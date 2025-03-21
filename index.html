@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Icon Link with Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #6a0dad; /* Fallback color */
+            background-image: url('/storage/emulated/0/Pictures/Screenshot/Screenshot_20250321-172625.jpg'); /* Add your image path here */
+            background-size: cover; /* Ensure the image covers the entire background */
+            background-position: center; /* Center the image */
+            overflow: hidden; /* Prevent scrolling when menu is open */
+        }
+
+        /* Three-dot icon (hamburger menu) */
+        .menu-icon {
+            position: fixed;
+            top: 40px;
+            left: 20px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it's above other elements */
+            opacity: 0; /* Start invisible */
+            animation: fadeIn 2s forwards, colorChange 9s infinite; /* Fade in and color change */
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Color change animation */
+        @keyframes colorChange {
+            0% {
+                color: white;
+            }
+            33% {
+                color: #00ff00; /* Luminous green */
+            }
+            66% {
+                color: yellow;
+            }
+            100% {
+                color: white;
+            }
+        }
+
+        /* Menu overlay */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: -100%; /* Hide menu off-screen initially */
+            width: 250px;
+            height: 100vh;
+            background-color: #4b0082; /* Dark purple for menu */
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+            transition: left 0.3s ease; /* Slide-in animation */
+            z-index: 999; /* Ensure it's below the menu icon */
+        }
+
+        /* Menu content */
+        .menu-content {
+            padding: 20px;
+            color: white;
+            font-size: 30px; /* Adjusted text size */
+        }
+
+        /* Show menu when active */
+        .menu-overlay.active {
+            left: 0; /* Slide menu into view */
+        }
+
+        /* Footer styling */
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            color: white;
+            font-size: 18px;
+            animation: footerColorChange 20s infinite; /* Color change animation */
+        }
+
+        /* Footer color change animation */
+        @keyframes footerColorChange {
+            0% { color: red; }
+            10% { color: orange; }
+            20% { color: yellow; }
+            30% { color: green; }
+            40% { color: cyan; }
+            50% { color: blue; }
+            60% { color: indigo; }
+            70% { color: violet; }
+            80% { color: pink; }
+            90% { color: white; }
+            100% { color: red; }
+        }
+
+        /* Animated Text Container */
+        .animated-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            opacity: 0; /* Start invisible */
+        }
+
+        /* Text Line Styling */
+        .text-line {
+            opacity: 0;
+            animation: popUp 0.5s forwards;
+            margin: 10px 0;
+        }
+
+        /* Pop-up Animation */
+        @keyframes popUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Three-dot icon (hamburger menu) -->
+    <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+
+    <!-- Menu overlay -->
+    <div class="menu-overlay" id="menu-overlay">
+        <div class="menu-content">
+            <h2>Menu</h2>
+            <ul>
+                <li><a href="home.html">Home</a></li> <!-- Link to the Home page -->
+                <li><a href="about.html">About</a></li> <!-- Link to the About page -->
+                <li><a href="#">Documentation</a></li> <!-- Replaced "Services" with "Documentation" -->
+                <li><a href="contact.html">Contact</a></li> <!-- Link to the Contact page -->
+                <li><a href="login.html" onclick="logout()">Log Out</a></li> <!-- Log Out link -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Animated Text Container -->
+    <div class="animated-text">
+        <div class="text-line">A COMPUTER TECHNOLOGY COURSE COVERS HARDWARE,</div>
+        <div class="text-line">SOFTWARE, NETWORKING, CYBERSECURITY,</div>
+        <div class="text-line">AND EMERGING TECH LIKE AI AND CLOUD COMPUTING.</div>
+        <div class="text-line">IT INCLUDES HANDS-ON LABS, PROJECTS,</div>
+        <div class="text-line">AND REAL-WORLD APPLICATIONS,</div>
+        <div class="text-line">TEACHING SKILLS IN TROUBLESHOOTING,</div>
+        <div class="text-line">PROGRAMMING, AND DATA MANAGEMENT.</div>
+        <div class="text-line">STUDENTS LEARN ABOUT IT CERTIFICATIONS,</div>
+        <div class="text-line">CAREER PATHWAYS, AND PROFESSIONAL SKILLS</div>
+        <div class="text-line">LIKE PROJECT MANAGEMENT.</div>
+        <div class="text-line">THE COURSE PREPARES FOR ROLES IN IT</div>
+        <div class="text-line">THROUGH LECTURES, LABS, AND PRACTICAL ASSESSMENTS.</div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        MADE FOR COMPUTER TECHNOLOGY STUDENTS
+    </footer>
+
+    <script>
+        // Function to toggle the menu
+        function toggleMenu() {
+            const menuOverlay = document.getElementById('menu-overlay');
+            menuOverlay.classList.toggle('active');
+        }
+
+        // Function to log out
+        function logout() {
+            alert("You have been logged out.");
+            // Redirect to the login page
+            window.location.href = "login.html";
+        }
+
+        // Function to animate text lines
+        function animateText() {
+            const textLines = document.querySelectorAll('.text-line');
+            let delay = 0;
+
+            textLines.forEach((line, index) => {
+                setTimeout(() => {
+                    line.style.opacity = 1; // Make the line visible
+                }, delay);
+                delay += 3000; // 3 seconds delay between lines
+            });
+        }
+
+        // Start animation when the page loads
+        window.onload = animateText;
+    </script>
+</body>
+</html>

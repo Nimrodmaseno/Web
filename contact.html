@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Info</title>
+  <style>
+    body {
+      background-color: #E6E6FA; /* Fallback light purple background */
+      background-image: url('/storage/emulated/0/Pictures/Screenshot/Screenshot_20250321-175642.jpg'); /* Add your background image */
+      background-size: cover; /* Ensure the image covers the entire background */
+      background-position: center; /* Center the background image */
+      background-repeat: no-repeat; /* Prevent the image from repeating */
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      text-align: center;
+      color: white;
+      opacity: 0;
+      animation: popUp 0.5s ease-in-out 3s forwards;
+    }
+
+    @keyframes popUp {
+      0% {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      text-decoration: underline;
+      text-decoration-color: #4B0082; /* Dark purple underline */
+    }
+
+    p {
+      font-size: 1.2em;
+      margin: 10px 0;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.9em;
+      color: #4B0082; /* Dark purple text */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>CONTACT INFO</h1>
+    <p>+254715517108</p>
+    <p>EMAIL: nimrod10853@gmail.com</p>
+    <p>WRITE TO ME.</p>
+    <p>ODHIAMBO NIMROD STAFA</p>
+  </div>
+  <footer>MADE FOR COMPUTER TECHNOLOGY STUDENTS</footer>
+</body>
+</html>

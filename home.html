@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Bsc. COMPUTER TECHNOLOGY</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            justify-content: flex-start; /* Align content to the top */
+            align-items: flex-start; /* Align items to the left */
+            height: 100vh;
+            background-color: #6a0dad; /* Fallback purple background */
+            background-image: url('/storage/emulated/0/Pictures/Screenshot/Screenshot_20250321-175623.jpg'); /* Add your background image */
+            background-size: cover; /* Ensure the image covers the entire background */
+            background-position: center; /* Center the background image */
+            background-repeat: no-repeat; /* Prevent the image from repeating */
+            overflow: hidden; /* Prevent scrolling */
+        }
+
+        /* Circular icon container */
+        .icon-container {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%; /* Makes it circular */
+            background-color: #ccc; /* Default gray background */
+            position: relative;
+            margin-top: 10px; /* Add some top margin */
+            margin-left: 20px; /* Add some left margin */
+            overflow: hidden; /* Ensures the image stays within the circle */
+        }
+
+        /* Small green dot */
+        .green-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%; /* Makes it circular */
+            background-color: #00ff00; /* Green color */
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            border: 2px solid white; /* White border for contrast */
+        }
+
+        /* Heading styling */
+        h1 {
+            color: white; /* White color */
+            font-size: 36px;
+            opacity: 0; /* Start invisible */
+            animation: fadeIn 2s forwards; /* Fade-in animation */
+            margin-top: 20px; /* Add some top margin */
+            margin-left: 20px; /* Add some left margin */
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* File input styling */
+        input[type="file"] {
+            display: none; /* Hide the default file input */
+        }
+
+        /* Upload button styling */
+        .upload-button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #007bff; /* Blue background */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 20px; /* Add some left margin */
+        }
+
+        .upload-button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        /* Hide the upload button */
+        .upload-button.hidden {
+            display: none;
+        }
+
+        /* User greeting text */
+        .user-greeting {
+            color: white;
+            font-size: 18px;
+            margin-left: 10px; /* Space between icon and text */
+            align-self: center; /* Vertically center with the icon */
+        }
+
+        /* Menu icons container */
+        .menu-icons {
+            display: flex;
+            flex-direction: row; /* Arrange icons horizontally */
+            gap: 20px; /* Space between icons */
+            margin-top: 30px; /* Space below the icon and greeting */
+            margin-left: 20px; /* Align with the left margin */
+        }
+
+        /* Menu icon styling */
+        .menu-icon {
+            width: 80px; /* Increased size for better visibility */
+            height: 80px; /* Increased size for better visibility */
+            border-radius: 50%; /* Makes it circular */
+            background-color: #007bff; /* Blue background */
+            display: flex;
+            flex-direction: column; /* Stack icon and text vertically */
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 14px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Smooth hover effect */
+            overflow: hidden; /* Ensure the image stays within the circle */
+        }
+
+        .menu-icon:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        /* Menu icon image styling */
+        .menu-icon img {
+            width: 40px; /* Adjust image size */
+            height: 40px; /* Adjust image size */
+            margin-bottom: 5px; /* Space between image and text */
+        }
+    </style>
+</head>
+<body>
+    <!-- Heading -->
+    <h1>Bsc. COMPUTER TECHNOLOGY</h1>
+
+    <!-- User icon and greeting -->
+    <div style="display: flex; align-items: center;">
+        <!-- Circular icon with green dot -->
+        <div class="icon-container" id="icon-container">
+            <div class="green-dot"></div>
+        </div>
+        <!-- Greeting text -->
+        <span class="user-greeting">Hi! User</span>
+    </div>
+
+    <!-- Upload button -->
+    <label for="upload-input" class="upload-button" id="upload-button">Upload Image</label>
+    <input type="file" id="upload-input" accept="image/*" onchange="handleImageUpload(event)">
+
+    <!-- Menu icons with images and text -->
+    <div class="menu-icons">
+        <div class="menu-icon">
+            <img src="/storage/emulated/0/Pictures/Screenshot/Screenshot_20250321-161526.jpg" alt="PDF Notes"> <!-- Replace with your image path -->
+            <span>PDF NOTES</span>
+        </div>
+        <div class="menu-icon">
+            <img src="/storage/emulated/0/BM5/Screenshot_20250321-161648.jpg" alt="Assignment CATs"> <!-- Replace with your image path -->
+            <span>ASSIGNMENT CATS</span>
+        </div>
+        <div class="menu-icon">
+            <img src="/storage/emulated/0/BM5/Screenshot_20250321-161736.jpg" alt="Announcements"> <!-- Replace with your image path -->
+            <span>ANNOUNCEMENTS</span>
+        </div>
+    </div>
+
+    <script>
+        // Function to handle image upload
+        function handleImageUpload(event) {
+            const file = event.target.files[0]; // Get the uploaded file
+            if (file) {
+                const reader = new FileReader(); // Create a FileReader
+                reader.onload = function (e) {
+                    const iconContainer = document.getElementById('icon-container');
+                    iconContainer.style.backgroundImage = `url(${e.target.result})`; // Set the uploaded image as the background
+                    iconContainer.style.backgroundSize = 'cover'; // Ensure the image covers the circle
+
+                    // Hide the upload button
+                    const uploadButton = document.getElementById('upload-button');
+                    uploadButton.classList.add('hidden');
+                };
+                reader.readAsDataURL(file); // Read the file as a data URL
+            }
+        }
+    </script>
+</body>
+</html>
